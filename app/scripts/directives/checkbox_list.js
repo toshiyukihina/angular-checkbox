@@ -16,15 +16,12 @@ angular.module('angularCheckboxApp')
           enabled: '=checkboxListEnabled'
         },
         controller: 'CheckboxListCtrl',
-        link: function(scope, element, attrs) {
+        link: function(scope, element, attrs, checkboxListCtrl) {
+          $log.debug(checkboxListCtrl);
+
           scope.$watch('enabled', function(newValue, oldValue) {
+            //$log.debug(checkboxListCtrl);
             if (angular.isDefined(newValue)) {
-              $log.debug('enable: %s > %s', oldValue, newValue);
-              if (newValue) {
-                // TODO: check all items
-              } else {
-                // TODO: uncheck all items
-              }
             }
           });
         }

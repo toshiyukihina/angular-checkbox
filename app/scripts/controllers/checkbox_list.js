@@ -23,8 +23,12 @@ angular.module('angularCheckboxApp')
         });
 
         checkboxItem.$watch('item.checked', function(newValue, oldValue) {
-          $log.debug('item changed: %s > %s', oldValue, newValue);
-          $scope.enabled = newValue;
+          var items = _.pluck(self.checkboxItems, 'item');
+          if (newValue && _.every(items, { checked: true })) {
+            $scope.enabled = true;
+          } else {
+            $scope.enabled = false;
+          }
         });
       };
 
